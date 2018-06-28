@@ -327,17 +327,7 @@
 
       
         
-          <p>pache Mina Server 是一个网络通信应用框架，也就是说，它主要是对基于TCP/IP、UDP/IP协议栈的通信框架（当然，也可以提供JAVA 对象的序列化服务、虚拟机管道通信服务等），Mina 可以帮助我们快速开发高性能、高扩展性的网络通信应用，Mina 提供了事件驱动、异步（Mina 的异步IO 默认使用的是JAVA NIO 作为底层支持）操作的编程模型。</p>
-<h2 id="第一步：建立服务器连接"><a href="#第一步：建立服务器连接" class="headerlink" title="第一步：建立服务器连接"></a>第一步：建立服务器连接</h2><blockquote>
-<p>这里是最简单的方式</p>
-<ol>
-<li><strong>需要一个Nio的接受对象:</strong><br> nioSOcketAcceptor</li>
-<li><strong>需要一个处理器:</strong><br> 该处理器要继承于IoHandlerAdapter（io处理适配器），其中有多个方法用于事件处理</li>
-<li><strong>添加拦截器:</strong><br> 为什么需要连接器，我们知道传统的IO流传输的是二进制字节数组，我们就要像以前那样再去读流写流，用MINA就不用了呀，因为都封装在编码解码器里面，有几种默认的解码工厂，TextLineCodeCFactory用于字符串的解码，可以添加多个拦截器，也可以自己重写解码器，具体看文档</li>
-<li>bind绑定端口号</li>
-</ol>
-</blockquote>
-<h3 id="服务端主入口"><a href="#服务端主入口" class="headerlink" title="服务端主入口"></a>服务端主入口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">    	<span class="comment">//第一步 创建一个NioSocketAcceptor 对象  </span></span><br><span class="line">    	NioSocketAcceptor acceptor = <span class="keyword">new</span> NioSocketAcceptor();</span><br><span class="line">        <span class="comment">//第二步设置handler  </span></span><br><span class="line">        acceptor.setHandler(<span class="keyword">new</span> MyServerHandler());</span><br><span class="line">        <span class="comment">//第三步,获取拦截器，发来的消息都需要通过拦截器拦截之后才能接收到  </span></span><br><span class="line">        <span class="comment">//添加一个拦截器对数据进行加解码TextLineCodecFactory()  </span></span><br><span class="line">        acceptor.getFilterChain().addLast(<span class="string">"CodeFilter"</span>, <span class="keyword">new</span> ProtocolCodecFilter(<span class="keyword">new</span> TextLineCodecFactory()));</span><br><span class="line">        <span class="comment">//第四步，绑定端口号  </span></span><br><span class="line">        acceptor.bind(<span class="keyword">new</span> InetSocketAddress(<span class="string">"127.0.0.1"</span>, <span class="number">9898</span>));</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> handle exception</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <p>pache Mina Server 是一个网络通信应用框架，也就是说，它主要是对基于TCP/IP、UDP/IP协议栈的通信框架（当然，也可以提供JAVA 对象的序列化服务、虚拟机管道通信服务等），Mina 可以帮助我们快速开发高性能、高扩展性的网络通信应用，Mina 提供了事件驱动、异步（Mina 的异步IO 默认使用的是JAVA NIO 作为底层支持）操作的编程模型。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2018/06/28/mina/#more" rel="contents">
