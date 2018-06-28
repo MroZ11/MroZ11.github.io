@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="第一步：建立服务器连接  这里是最简单的方式  需要一个Nio的接受对象: nioSOcketAcceptor 需要一个处理器:             该处理器要继承于IoHandlerAdapter（io处理适配器），其中有多个方法用于事件处理 添加拦截器: （为什么需要连接器，我们知道传统的IO流传输的是二进制字节数组，我们就要像以前那样再去读流写流，用MINA就不用了呀，因为都封装在编码">
+<meta name="description" content="第一步：建立服务器连接 这里是最简单的方式  需要一个Nio的接受对象: nioSOcketAcceptor 需要一个处理器:             该处理器要继承于IoHandlerAdapter（io处理适配器），其中有多个方法用于事件处理 添加拦截器: （为什么需要连接器，我们知道传统的IO流传输的是二进制字节数组，我们就要像以前那样再去读流写流，用MINA就不用了呀，因为都封装在编码解码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mina学习笔记">
 <meta property="og:url" content="https://mroz11.github.io/2018/06/28/mina/index.html">
 <meta property="og:site_name" content="周十五">
-<meta property="og:description" content="第一步：建立服务器连接  这里是最简单的方式  需要一个Nio的接受对象: nioSOcketAcceptor 需要一个处理器:             该处理器要继承于IoHandlerAdapter（io处理适配器），其中有多个方法用于事件处理 添加拦截器: （为什么需要连接器，我们知道传统的IO流传输的是二进制字节数组，我们就要像以前那样再去读流写流，用MINA就不用了呀，因为都封装在编码">
+<meta property="og:description" content="第一步：建立服务器连接 这里是最简单的方式  需要一个Nio的接受对象: nioSOcketAcceptor 需要一个处理器:             该处理器要继承于IoHandlerAdapter（io处理适配器），其中有多个方法用于事件处理 添加拦截器: （为什么需要连接器，我们知道传统的IO流传输的是二进制字节数组，我们就要像以前那样再去读流写流，用MINA就不用了呀，因为都封装在编码解码">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-28T02:13:33.072Z">
+<meta property="og:updated_time" content="2018-06-28T02:17:16.127Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mina学习笔记">
-<meta name="twitter:description" content="第一步：建立服务器连接  这里是最简单的方式  需要一个Nio的接受对象: nioSOcketAcceptor 需要一个处理器:             该处理器要继承于IoHandlerAdapter（io处理适配器），其中有多个方法用于事件处理 添加拦截器: （为什么需要连接器，我们知道传统的IO流传输的是二进制字节数组，我们就要像以前那样再去读流写流，用MINA就不用了呀，因为都封装在编码">
+<meta name="twitter:description" content="第一步：建立服务器连接 这里是最简单的方式  需要一个Nio的接受对象: nioSOcketAcceptor 需要一个处理器:             该处理器要继承于IoHandlerAdapter（io处理适配器），其中有多个方法用于事件处理 添加拦截器: （为什么需要连接器，我们知道传统的IO流传输的是二进制字节数组，我们就要像以前那样再去读流写流，用MINA就不用了呀，因为都封装在编码解码">
 
 
 
@@ -299,8 +299,8 @@
       
 
       
-        <ul>
-<li><h3 id="第一步：建立服务器连接"><a href="#第一步：建立服务器连接" class="headerlink" title="第一步：建立服务器连接"></a>第一步：建立服务器连接</h3>  这里是最简单的方式<blockquote>
+        <h3 id="第一步：建立服务器连接"><a href="#第一步：建立服务器连接" class="headerlink" title="第一步：建立服务器连接"></a>第一步：建立服务器连接</h3><blockquote>
+<p>这里是最简单的方式</p>
 <ol>
 <li><strong>需要一个Nio的接受对象:</strong> nioSOcketAcceptor</li>
 <li><strong>需要一个处理器:</strong>             该处理器要继承于IoHandlerAdapter（io处理适配器），其中有多个方法用于事件处理</li>
@@ -308,8 +308,6 @@
 <li>bind绑定端口号</li>
 </ol>
 </blockquote>
-</li>
-</ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//第一步 创建一个NioSocketAcceptor 对象  </span></span><br><span class="line">    NioSocketAcceptor  acceptor  = <span class="keyword">new</span> 	NioSocketAcceptor();</span><br><span class="line">	<span class="comment">//第二步设置handler  </span></span><br><span class="line">	acceptor.setHandler(<span class="keyword">new</span> MyServerHandler());</span><br><span class="line">	<span class="comment">//第三步,获取拦截器，发来的消息都需要通过拦截器拦截之后才能接收到  </span></span><br><span class="line">	<span class="comment">//添加一个拦截器对数据进行加解码TextLineCodecFactory()  </span></span><br><span class="line">	acceptor.getFilterChain().addLast(<span class="string">"CodeFilter"</span>, <span class="keyword">new</span> ProtocolCodecFilter(<span class="keyword">new</span> TextLineCodecFactory()));</span><br><span class="line">	<span class="comment">//第四步，绑定端口号  </span></span><br><span class="line">	acceptor.bind(<span class="keyword">new</span> InetSocketAddress(<span class="string">"127.0.0.1"</span>, <span class="number">9898</span>));</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">	<span class="comment">// <span class="doctag">TODO:</span> handle exception</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 
