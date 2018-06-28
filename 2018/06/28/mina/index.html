@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="第一步：建立服务器连接 这里是最简单的方式  需要一个Nio的接受对象: nioSOcketAcceptor 需要一个处理器: 该处理器要继承于IoHandlerAdapter（io处理适配器），其中有多个方法用于事件处理 添加拦截器: 为什么需要连接器，我们知道传统的IO流传输的是二进制字节数组，我们就要像以前那样再去读流写流，用MINA就不用了呀，因为都封装在编码解码器里面，有几种默认的解码工">
+<meta name="description" content="pache Mina Server 是一个网络通信应用框架，也就是说，它主要是对基于TCP/IP、UDP/IP协议栈的通信框架（当然，也可以提供JAVA 对象的序列化服务、虚拟机管道通信服务等），Mina 可以帮助我们快速开发高性能、高扩展性的网络通信应用，Mina 提供了事件驱动、异步（Mina 的异步IO 默认使用的是JAVA NIO 作为底层支持）操作的编程模型。 第一步：建立服务器连接 这">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mina学习笔记">
 <meta property="og:url" content="https://mroz11.github.io/2018/06/28/mina/index.html">
 <meta property="og:site_name" content="周十五">
-<meta property="og:description" content="第一步：建立服务器连接 这里是最简单的方式  需要一个Nio的接受对象: nioSOcketAcceptor 需要一个处理器: 该处理器要继承于IoHandlerAdapter（io处理适配器），其中有多个方法用于事件处理 添加拦截器: 为什么需要连接器，我们知道传统的IO流传输的是二进制字节数组，我们就要像以前那样再去读流写流，用MINA就不用了呀，因为都封装在编码解码器里面，有几种默认的解码工">
+<meta property="og:description" content="pache Mina Server 是一个网络通信应用框架，也就是说，它主要是对基于TCP/IP、UDP/IP协议栈的通信框架（当然，也可以提供JAVA 对象的序列化服务、虚拟机管道通信服务等），Mina 可以帮助我们快速开发高性能、高扩展性的网络通信应用，Mina 提供了事件驱动、异步（Mina 的异步IO 默认使用的是JAVA NIO 作为底层支持）操作的编程模型。 第一步：建立服务器连接 这">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-28T03:17:31.433Z">
+<meta property="og:updated_time" content="2018-06-28T03:24:07.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mina学习笔记">
-<meta name="twitter:description" content="第一步：建立服务器连接 这里是最简单的方式  需要一个Nio的接受对象: nioSOcketAcceptor 需要一个处理器: 该处理器要继承于IoHandlerAdapter（io处理适配器），其中有多个方法用于事件处理 添加拦截器: 为什么需要连接器，我们知道传统的IO流传输的是二进制字节数组，我们就要像以前那样再去读流写流，用MINA就不用了呀，因为都封装在编码解码器里面，有几种默认的解码工">
+<meta name="twitter:description" content="pache Mina Server 是一个网络通信应用框架，也就是说，它主要是对基于TCP/IP、UDP/IP协议栈的通信框架（当然，也可以提供JAVA 对象的序列化服务、虚拟机管道通信服务等），Mina 可以帮助我们快速开发高性能、高扩展性的网络通信应用，Mina 提供了事件驱动、异步（Mina 的异步IO 默认使用的是JAVA NIO 作为底层支持）操作的编程模型。 第一步：建立服务器连接 这">
 
 
 
@@ -299,7 +299,8 @@
       
 
       
-        <h2 id="第一步：建立服务器连接"><a href="#第一步：建立服务器连接" class="headerlink" title="第一步：建立服务器连接"></a>第一步：建立服务器连接</h2><blockquote>
+        <p>pache Mina Server 是一个网络通信应用框架，也就是说，它主要是对基于TCP/IP、UDP/IP协议栈的通信框架（当然，也可以提供JAVA 对象的序列化服务、虚拟机管道通信服务等），Mina 可以帮助我们快速开发高性能、高扩展性的网络通信应用，Mina 提供了事件驱动、异步（Mina 的异步IO 默认使用的是JAVA NIO 作为底层支持）操作的编程模型。</p>
+<h2 id="第一步：建立服务器连接"><a href="#第一步：建立服务器连接" class="headerlink" title="第一步：建立服务器连接"></a>第一步：建立服务器连接</h2><blockquote>
 <p>这里是最简单的方式</p>
 <ol>
 <li><strong>需要一个Nio的接受对象:</strong><br> nioSOcketAcceptor</li>
