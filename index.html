@@ -1378,6 +1378,12 @@
       } else if ($('.post-title-link').length > 1) {
         showTime(Counter);
       }
+      $.post("http://127.0.0.1:8080", function(data) {
+	  console.log(data)
+      });
+	    
+	    
+	    
     });
   </script>
 
